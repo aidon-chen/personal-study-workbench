@@ -1,0 +1,10 @@
+# 课件截图（约 42M / 330 张，体积较大不纳入版本库）
+slides/
+
+# 本地 SQLite 数据
+data/*.db
+data/*.db-journal
+
+# 系统与编辑器文件
+.DS_Store
+.vscode/

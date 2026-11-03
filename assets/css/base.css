@@ -1,0 +1,108 @@
+/* 基础层：重置、页面骨架、顶部栏与视图切换 */
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f4f6fa;
+  color: #1f2937;
+}
+
+/* ---------- 顶部栏 ---------- */
+.app-header {
+  flex: none;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e9f2;
+}
+
+.app-header .brand { flex: 1; min-width: 0; }
+.app-header .brand h1 {
+  margin: 0 0 2px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+.app-header .brand .hint {
+  font-size: 12px;
+  color: #8a94a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 顶部标签切换 */
+.tabs {
+  flex: none;
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  background: #eef1f7;
+  border-radius: 10px;
+}
+.tab {
+  height: 30px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #5b6472;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.tab:hover { color: #1f2937; }
+.tab.active {
+  background: #fff;
+  color: #1f2937;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, .12);
+}
+
+/* 导图工具按钮，答题视图时隐藏 */
+.app-header .tools {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.app-header .tools[hidden] { display: none !important; }
+.app-header .tools button {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #d7dde8;
+  background: #fff;
+  color: #374151;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.app-header .tools button:hover { background: #f2f5fb; border-color: #b9c4d6; }
+.app-header .tools button.icon { width: 32px; padding: 0; font-size: 15px; }
+
+/* ---------- 视图容器 ---------- */
+.view {
+  flex: 1;
+  min-height: 0;
+}
+/* 用 !important 覆盖各模块自身的 display 规则 */
+.view[hidden] { display: none !important; }
+
+@media (max-width: 760px) {
+  .app-header { flex-wrap: wrap; gap: 8px; padding: 10px 14px; }
+  .app-header .brand { flex: 1 1 100%; }
+  .app-header .brand .hint { display: none; }
+  .app-header .tools { flex: none; }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>计算机地图制图 · 学习平台</title>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/map.css">
+<link rel="stylesheet" href="assets/css/quiz.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <h1>计算机地图制图 · 学习平台</h1>
+    <div class="hint" id="appHint"></div>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" id="tabMap">知识图谱</button>
+    <button class="tab" id="tabQuiz">课后练习</button>
+  </nav>
+  <div class="tools" id="mapTools">
+    <button id="expandAll">展开全部</button>
+    <button id="collapseAll">收起全部</button>
+    <button id="zoomOut" class="icon" title="缩小">−</button>
+    <button id="zoomIn" class="icon" title="放大">＋</button>
+  </div>
+</header>
+
+<!-- 知识图谱视图 -->
+<div class="view" id="mapView">
+  <div id="app">
+    <div id="viewport"><div id="stage"><svg id="map"></svg></div></div>
+    <div id="splitter" title="拖动调整详情面板宽度，双击恢复默认"></div>
+    <aside id="panel">
+      <div class="panel-crumb" id="panelCrumb"></div>
+      <div class="panel-title" id="panelTitle"></div>
+      <span class="panel-tag" id="panelTag"></span>
+      <div class="panel-body" id="panelBody"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- 课后练习视图 -->
+<div class="view" id="quizView" hidden>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="title-row">
+        <h1>计算机地图制图 · 课后题练习</h1>
+        <span class="sub">先自己作答，再展开参考答案 · 记录保存在本地服务数据库</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="s-total">0</b><span>题目总数</span></div>
+        <div class="stat hl"><b id="s-done">0</b><span>已练习</span></div>
+        <div class="stat"><b id="s-attempts">0</b><span>作答次数</span></div>
+        <div class="stat bad"><b id="s-wrongs">0</b><span>错误次数</span></div>
+        <div class="stat ok"><b id="s-rate">—</b><span>正确率</span></div>
+      </div>
+      <div class="toolbar">
+        <label for="chapter">章节</label>
+        <select id="chapter"></select>
+        <label for="qtype">题型</label>
+        <select id="qtype"></select>
+        <div class="seg" id="status-seg">
+          <button data-status="all" class="active">全部</button>
+          <button data-status="none">未练习</button>
+          <button data-status="wrong">有错题</button>
+          <button data-status="right">已做对</button>
+        </div>
+        <span class="toolbar-gap"></span>
+        <button class="btn small" id="btn-reveal-all">展开全部答案</button>
+        <button class="btn small" id="btn-export">导出记录</button>
+        <button class="btn small" id="btn-import">导入记录</button>
+        <input type="file" id="file-import" accept=".json,application/json" hidden>
+      </div>
+    </div>
+  </header>
+
+  <main id="list"></main>
+  <footer>作答记录与笔记保存在本地服务的 SQLite 数据库；未启动服务时自动退回浏览器本地存储。</footer>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/vendor/web-highlighter.min.js"></script>
+<script src="assets/vendor/rough-notation.iife.js"></script>
+<script src="assets/js/map-data.js"></script>
+<script src="assets/js/quiz-data.js"></script>
+<script src="assets/js/map-view.js"></script>
+<script src="assets/js/quiz-view.js"></script>
+<script src="assets/js/panel-annotate.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
